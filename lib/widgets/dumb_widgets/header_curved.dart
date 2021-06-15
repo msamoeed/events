@@ -1,6 +1,6 @@
-import 'package:e_control/constants/colors.dart';
-import 'package:e_control/constants/fonts.dart';
-import 'package:e_control/constants/size.dart';
+import 'package:events/constants/colors.dart';
+import 'package:events/constants/fonts.dart';
+import 'package:events/constants/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:google_fonts/google_fonts.dart';

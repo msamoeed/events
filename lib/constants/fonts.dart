@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 TextStyle t1 = GoogleFonts.montserrat(
     textStyle: TextStyle(fontSize: 17, color: Colors.black));
-
+TextStyle t1white = GoogleFonts.montserrat(
+    textStyle: TextStyle(fontSize: 17, color: Colors.white));
 TextStyle t1small = GoogleFonts.montserrat(
     textStyle: TextStyle(fontSize: 14, color: Colors.white));
 
@@ -58,7 +59,6 @@ TextStyle t8 = GoogleFonts.montserrat(
         color: Colors.black,
         fontSize: SizeConfig.blockSizeHorizontal * 5.5,
         fontWeight: FontWeight.w600));
-
 
 final kTitleStyle = TextStyle(
   color: Colors.white,

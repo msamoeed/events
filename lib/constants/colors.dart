@@ -8,5 +8,5 @@ Color darktheme = Color(0xFF264487);
 
 var ccColor = Color(0xff232335);
 //////////////
-var backgroundcolor = Color(0xFF1a1a28);
-var widgetcolor = Color(0xFF28314a);
+var backgroundcolor = Color(0xFF4563DB);
+var widgetcolor = Color(0xFF5B16D0);

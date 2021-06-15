@@ -1,5 +1,5 @@
 {
-    "last_updated": "Sun, 13 Jun 2021 13:57:57 GMT",
+    "last_updated": "Tue, 15 Jun 2021 13:02:45 GMT",
     "routes": [
         {
             "file_path": "views/splashscreen/splashscreen_view.dart",
@@ -10,6 +10,51 @@
             "file_path": "views/onboading_screen/onboading_screen_view.dart",
             "route_name": "onboading_screenViewRoute",
             "view_name": "OnboadingScreenView"
+        },
+        {
+            "file_path": "views/loginscreen/loginscreen_view.dart",
+            "route_name": "loginscreenViewRoute",
+            "view_name": "LoginscreenView"
+        },
+        {
+            "file_path": "views/signupscreen/signupscreen_view.dart",
+            "route_name": "signupscreenViewRoute",
+            "view_name": "SignupscreenView"
+        },
+        {
+            "file_path": "views/forgot_password_screen/forgot_password_screen_view.dart",
+            "route_name": "forgot_password_screenViewRoute",
+            "view_name": "ForgotPasswordScreenView"
+        },
+        {
+            "file_path": "views/bottom_bar/bottom_bar_view.dart",
+            "route_name": "bottom_barViewRoute",
+            "view_name": "BottomBarView"
+        },
+        {
+            "file_path": "views/home_screen/home_screen_view.dart",
+            "route_name": "home_screenViewRoute",
+            "view_name": "HomeScreenView"
+        },
+        {
+            "file_path": "views/chat_screen/chat_screen_view.dart",
+            "route_name": "chat_screenViewRoute",
+            "view_name": "ChatScreenView"
+        },
+        {
+            "file_path": "views/event_selection_screen/event_selection_screen_view.dart",
+            "route_name": "event_selection_screenViewRoute",
+            "view_name": "EventSelectionScreenView"
+        },
+        {
+            "file_path": "views/event_form/event_form_view.dart",
+            "route_name": "event_formViewRoute",
+            "view_name": "EventFormView"
+        },
+        {
+            "file_path": "views/registered_events/registered_events_view.dart",
+            "route_name": "registered_eventsViewRoute",
+            "view_name": "RegisteredEventsView"
         }
     ]
 }

@@ -1,4 +1,4 @@
-import 'package:e_control/constants/fonts.dart';
+import 'package:events/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -88,7 +88,6 @@ class TextFields extends StatelessWidget {
                       suffix: suffix,
                       focusColor: focusColor,
                       hintText: hintText,
-                      
                       hintStyle: t10appColor,
                       labelText: helpText,
                       border: InputBorder.none),
