@@ -15,16 +15,16 @@ class BottomBarView extends StatelessWidget {
     return ViewModelBuilder<BottomBarViewModel>.reactive(
       builder: (BuildContext context, BottomBarViewModel viewModel, Widget _) {
         return Scaffold(
-            appBar: AppBar(),
-            body: BottomNavigationBar(
+            body: getViewForIndex(viewModel.currentIndex),
+            bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               selectedLabelStyle: GoogleFonts.rubik(),
               selectedItemColor: Colors.white,
 
               unselectedIconTheme: IconThemeData(color: Colors.grey),
               elevation: 10,
-              backgroundColor: widgetcolor,
-              onTap: viewModel.setIndex, // new
+              backgroundColor: backgroundcolor,
+              onTap: viewModel.setIndex, // newßß
               currentIndex: viewModel.currentIndex, // new
               items: [
                 BottomNavigationBarItem(
@@ -53,7 +53,7 @@ class BottomBarView extends StatelessWidget {
   }
 }
 
-Widget getViewForIndex(int index, bool isCustomer) {
+Widget getViewForIndex(int index) {
   if (index == 0) {
     return HomeScreenView();
   } else if (index == 1) {
