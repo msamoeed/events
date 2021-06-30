@@ -14,6 +14,9 @@ TextStyle t1small = GoogleFonts.montserrat(
 TextStyle t10 = GoogleFonts.montserrat(
     textStyle: TextStyle(fontSize: 17, color: Colors.black));
 
+TextStyle t22white = GoogleFonts.montserrat(
+    textStyle: TextStyle(fontSize: 22, color: Colors.white));
+
 TextStyle t10appColor =
     GoogleFonts.montserrat(textStyle: TextStyle(fontSize: 17, color: appColor));
 

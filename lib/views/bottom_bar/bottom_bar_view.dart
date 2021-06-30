@@ -19,11 +19,11 @@ class BottomBarView extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               selectedLabelStyle: GoogleFonts.rubik(),
-              selectedItemColor: Colors.white,
+              selectedItemColor: backgroundcolor,
 
               unselectedIconTheme: IconThemeData(color: Colors.grey),
-              elevation: 10,
-              backgroundColor: backgroundcolor,
+              elevation: 25,
+              backgroundColor: Colors.white,
               onTap: viewModel.setIndex, // newßß
               currentIndex: viewModel.currentIndex, // new
               items: [

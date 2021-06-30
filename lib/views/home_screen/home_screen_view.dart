@@ -4,6 +4,7 @@ import 'package:events/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'home_screen_view_model.dart';
 
 class HomeScreenView extends StatelessWidget {
@@ -16,7 +17,6 @@ class HomeScreenView extends StatelessWidget {
           child: Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
-                
                 backgroundColor: backgroundcolor,
                 bottom: TabBar(isScrollable: true, tabs: [
                   Tab(
@@ -59,34 +59,37 @@ class TabViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        if (viewModel.dataReady('general-stream'))
-          ...tStream.docs.map((e) {
-            return Container(
-              margin: EdgeInsets.all(5),
-              child: ListTile(
-                leading:  Text(
-                  e["name"] ,
-                  style: t1,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView(
+        children: [
+          if (viewModel.dataReady('general-stream'))
+            ...tStream.docs.map((e) {
+              return Container(
+                margin: EdgeInsets.all(5),
+                child: ListTile(
+                  leading: Text(
+                    e["name"],
+                    style: t1white,
+                  ),
+                  tileColor: backgroundcolor,
+                  title: Text(
+                    e['date'],
+                    style: t1small,
+                  ),
+                  onTap: () {
+                    viewModel.openDialogWithForm(
+                        address: e['address'],
+                        name: e['name'],
+                        context: context,
+                        date: e['date'],
+                        time: e['time']);
+                  },
                 ),
-                tileColor: widgetcolor,
-                title: Text(
-                  e['date'],
-                  style: t1small,
-                ),
-                subtitle: Text(
-                  e['type'],
-                  style: t1,
-                ),
-                trailing: Text(
-                  e['address'],
-                  style: t1,
-                ),
-              ),
-            );
-          })
-      ],
+              );
+            })
+        ],
+      ),
     );
   }
 }
