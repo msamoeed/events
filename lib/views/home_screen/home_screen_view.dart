@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,8 +16,97 @@ class HomeScreenView extends StatelessWidget {
         return DefaultTabController(
           length: 2,
           child: Scaffold(
+              drawer: Drawer(
+                elevation: 5,
+                semanticLabel: "Profile",
+                child: ListView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Container(
+                        child: Icon(
+                          FontAwesomeIcons.userAlt,
+                          color: Colors.blueGrey,
+                          size: 60,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 2),
+                      child: ListTile(
+                        selectedTileColor: Colors.blueGrey,
+                        enableFeedback: true,
+                        tileColor: appColor,
+                        title: Text(
+                          "Registrations",
+                          style: t1white,
+                        ),
+                        leading: Icon(
+                          Icons.event,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          viewModel.navigateToRegisteredEventsScreen();
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 2),
+                      child: ListTile(
+                        selectedTileColor: Colors.blueGrey,
+                        enableFeedback: true,
+                        tileColor: appColor,
+                        title: Text(
+                          "My Events",
+                          style: t1white,
+                        ),
+                        leading: Icon(
+                          Icons.event,
+                          color: Colors.white,
+                        ),
+                        onTap: () {
+                          viewModel.navigateToMyEventsScreen();
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 2),
+                      child: ListTile(
+                        selectedTileColor: Colors.blueGrey,
+                        enableFeedback: true,
+                        tileColor: appColor,
+                        title: Text(
+                          "Bookings",
+                          style: t1white,
+                        ),
+                        leading: Icon(
+                          Icons.book_online,
+                          color: Colors.white,
+                        ),
+                        onTap: () => viewModel.navigateToMyBookingsScreen(),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 150),
+                      child: ListTile(
+                        selectedTileColor: Colors.blueGrey,
+                        enableFeedback: true,
+                        tileColor: appColor,
+                        title: Text(
+                          "Logout",
+                          style: t1white,
+                        ),
+                        leading: Icon(
+                          Icons.logout,
+                          color: Colors.white,
+                        ),
+                        onTap: () => viewModel.logout(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               appBar: AppBar(
-                automaticallyImplyLeading: false,
                 backgroundColor: backgroundcolor,
                 bottom: TabBar(isScrollable: true, tabs: [
                   Tab(
@@ -79,10 +169,12 @@ class TabViewWidget extends StatelessWidget {
                   ),
                   onTap: () {
                     viewModel.openDialogWithForm(
+                        docId: e['docId'],
                         address: e['address'],
                         name: e['name'],
                         context: context,
                         date: e['date'],
+                        managerId: e['uid'],
                         time: e['time']);
                   },
                 ),

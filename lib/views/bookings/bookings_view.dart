@@ -2,18 +2,15 @@ import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'registered_events_view_model.dart';
+import 'bookings_view_model.dart';
 
-class RegisteredEventsView extends StatelessWidget {
+class BookingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<RegisteredEventsViewModel>.reactive(
-      builder: (BuildContext context, RegisteredEventsViewModel viewModel,
-          Widget _) {
+    return ViewModelBuilder<BookingsViewModel>.reactive(
+      builder: (BuildContext context, BookingsViewModel viewModel, Widget _) {
         return Scaffold(
-          appBar: AppBar(
-            backgroundColor: appColor,
-          ),
+          appBar: AppBar(),
           body: Center(
             child: ListView(
               children: [
@@ -27,7 +24,7 @@ class RegisteredEventsView extends StatelessWidget {
                           style: t10,
                         ),
                         subtitle: Text(
-                          e['docId'],
+                          e['uid'],
                           style: t1small.copyWith(color: appColor),
                         ),
                         title: Text(
@@ -42,7 +39,7 @@ class RegisteredEventsView extends StatelessWidget {
           ),
         );
       },
-      viewModelBuilder: () => RegisteredEventsViewModel(),
+      viewModelBuilder: () => BookingsViewModel(),
     );
   }
 }

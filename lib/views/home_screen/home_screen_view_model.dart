@@ -2,6 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
 import 'package:events/core/locator.dart';
+import 'package:events/views/bookings/bookings_view.dart';
+import 'package:events/views/loginscreen/loginscreen_view.dart';
+import 'package:events/views/my_events/my_events_view.dart';
+import 'package:events/views/registered_events/registered_events_view.dart';
 import 'package:events/widgets/dumb_widgets/header_curved.dart';
 import 'package:events/widgets/dumb_widgets/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,8 +25,9 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
   var firebase = FirebaseFirestore.instance;
   var contactNumber;
   var dialogService = locator<DialogService>();
-  var auth = FirebaseAuth.instance;
+  final _navService = locator<NavigationService>();
 
+  var auth = FirebaseAuth.instance;
 
   Stream<QuerySnapshot> getGeneralEvents() {
     return firebase
@@ -30,7 +35,8 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
         .where('type', isEqualTo: 'general')
         .snapshots();
   }
-    final _snackbarService = locator<SnackbarService>();
+
+  final _snackbarService = locator<SnackbarService>();
 
   Stream<QuerySnapshot> getSportsEvents() {
     return firebase
@@ -49,7 +55,13 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
       };
 
   openDialogWithForm(
-      {String name, String address, String time, String date, context}) {
+      {String name,
+      String address,
+      String time,
+      String date,
+      String docId,
+      String managerId,
+      context}) {
     showGeneralDialog(
       barrierLabel: "QR Code",
       barrierDismissible: true,
@@ -102,7 +114,13 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
                     ),
                   ),
                   TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        createBooking(
+                            eventId: docId,
+                            eventName: name,
+                            eventDate: date,
+                            managerId: managerId);
+                      },
                       icon: Icon(
                         FontAwesomeIcons.forward,
                         color: Colors.white,
@@ -131,33 +149,49 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
     );
   }
 
-    createBooking() async {
-        
-      DocumentReference documentReference =
-          FirebaseFirestore.instance.collection('eventsRegistration').doc();
-      await FirebaseFirestore.instance
-          .collection('eventsRegistration')
-          .doc(documentReference.id)
-          .set({
-            
-            'uid': auth.currentUser.uid,
-            "docId": documentReference.id,
-            
+  navigateToRegisteredEventsScreen() {
+    _navService.navigateToView(RegisteredEventsView());
+  }
 
-            
-          })
-          .then((value) => {
-                _snackbarService.showSnackbar(
-                  message: "Event successfully",
-                ),
-              })
-          .catchError((err) {
-            _snackbarService.showSnackbar(
-                message: err.message.toString(), title: "Error");
-          });
-    } 
-  
-    
+  navigateToMyEventsScreen() {
+    _navService.navigateToView(MyEventsView());
+  }
+
+  navigateToMyBookingsScreen() {
+    _navService.navigateToView(BookingsView());
+  }
+
+  logout() {
+    auth.signOut();
+    _navService.clearTillFirstAndShowView(LoginscreenView());
+  }
+
+  createBooking(
+      {String eventId, String eventName, eventDate, managerId}) async {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('eventsRegistration').doc();
+    await FirebaseFirestore.instance
+        .collection('eventsRegistration')
+        .doc(documentReference.id)
+        .set({
+          'uid': auth.currentUser.uid,
+          "docId": documentReference.id,
+          "eventId": eventId,
+          "eventName": eventName,
+          "eventDate": eventDate,
+          "contactNumber": contactNumber,
+          "managerId": managerId
+        })
+        .then((value) => {
+              _snackbarService.showSnackbar(
+                message: "Event successfully booked",
+              ),
+            })
+        .catchError((err) {
+          _snackbarService.showSnackbar(
+              message: err.message.toString(), title: "Error");
+        });
+  }
 
   HomeScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());

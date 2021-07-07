@@ -11,3 +11,5 @@ const String chatScreenViewRoute = 'chatScreenViewRoute';
 const String eventSelectionScreenViewRoute = 'eventSelectionScreenViewRoute';
 const String eventFormViewRoute = 'eventFormViewRoute';
 const String registeredEventsViewRoute = 'registeredEventsViewRoute';
+const String myEventsViewRoute = 'myEventsViewRoute';
+const String bookingsViewRoute = 'bookingsViewRoute';

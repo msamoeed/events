@@ -2,14 +2,13 @@ import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'registered_events_view_model.dart';
+import 'my_events_view_model.dart';
 
-class RegisteredEventsView extends StatelessWidget {
+class MyEventsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<RegisteredEventsViewModel>.reactive(
-      builder: (BuildContext context, RegisteredEventsViewModel viewModel,
-          Widget _) {
+    return ViewModelBuilder<MyEventsViewModel>.reactive(
+      builder: (BuildContext context, MyEventsViewModel viewModel, Widget _) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: appColor,
@@ -18,20 +17,20 @@ class RegisteredEventsView extends StatelessWidget {
             child: ListView(
               children: [
                 if (viewModel.dataReady)
-                  ...viewModel.tRegistrations.docs.map((e) {
+                  ...viewModel.tEvents.docs.map((e) {
                     return Container(
                       margin: EdgeInsets.all(5),
                       child: ListTile(
                         leading: Text(
-                          e['eventName'],
+                          e['name'],
                           style: t10,
                         ),
                         subtitle: Text(
-                          e['docId'],
+                          e['address'],
                           style: t1small.copyWith(color: appColor),
                         ),
                         title: Text(
-                          e['eventDate'],
+                          e['date'],
                           style: t10,
                         ),
                       ),
@@ -42,7 +41,7 @@ class RegisteredEventsView extends StatelessWidget {
           ),
         );
       },
-      viewModelBuilder: () => RegisteredEventsViewModel(),
+      viewModelBuilder: () => MyEventsViewModel(),
     );
   }
 }

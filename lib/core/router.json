@@ -1,5 +1,5 @@
 {
-    "last_updated": "Tue, 15 Jun 2021 13:02:45 GMT",
+    "last_updated": "Wed, 07 Jul 2021 09:26:49 GMT",
     "routes": [
         {
             "file_path": "views/splashscreen/splashscreen_view.dart",
@@ -55,6 +55,16 @@
             "file_path": "views/registered_events/registered_events_view.dart",
             "route_name": "registered_eventsViewRoute",
             "view_name": "RegisteredEventsView"
+        },
+        {
+            "file_path": "views/my_events/my_events_view.dart",
+            "route_name": "my_eventsViewRoute",
+            "view_name": "MyEventsView"
+        },
+        {
+            "file_path": "views/bookings/bookings_view.dart",
+            "route_name": "bookingsViewRoute",
+            "view_name": "BookingsView"
         }
     ]
 }

@@ -14,6 +14,8 @@ import 'package:events/views/chat_screen/chat_screen_view.dart' as view7;
 import 'package:events/views/event_selection_screen/event_selection_screen_view.dart' as view8;
 import 'package:events/views/event_form/event_form_view.dart' as view9;
 import 'package:events/views/registered_events/registered_events_view.dart' as view10;
+import 'package:events/views/my_events/my_events_view.dart' as view11;
+import 'package:events/views/bookings/bookings_view.dart' as view12;
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -40,6 +42,10 @@ class Router {
         return MaterialPageRoute(builder: (_) => view9.EventFormView());
       case registeredEventsViewRoute:
         return MaterialPageRoute(builder: (_) => view10.RegisteredEventsView());
+      case myEventsViewRoute:
+        return MaterialPageRoute(builder: (_) => view11.MyEventsView());
+      case bookingsViewRoute:
+        return MaterialPageRoute(builder: (_) => view12.BookingsView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
