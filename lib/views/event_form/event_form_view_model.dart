@@ -17,7 +17,6 @@ class EventFormViewModel extends BaseViewModel {
   var type;
   var address;
   final _snackbarService = locator<SnackbarService>();
-  final _navService = locator<NavigationService>();
 
   var auth = FirebaseAuth.instance;
 
@@ -32,35 +31,48 @@ class EventFormViewModel extends BaseViewModel {
   }
 
   Future submitForm() async {
-    if (name != null && type != null && address != null) {
-      DocumentReference documentReference =
-          FirebaseFirestore.instance.collection('events').doc();
-      await FirebaseFirestore.instance
-          .collection('events')
-          .doc(documentReference.id)
-          .set({
-            "time":
-                starttime.hour.toString() + ':' + startdate.minute.toString(),
-            "date": DateMonthYear(startdate),
-            "type": type,
-            "name": name,
-            'uid': auth.currentUser.uid,
-            "docId": documentReference.id,
-            "address": address
-          })
-          .then((value) => {
-                _snackbarService.showSnackbar(
-                  message: "Event successfully registered",
-                ),
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(auth.currentUser.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) async {
+      Map<String, dynamic> data = documentSnapshot.data();
+      if (data['type'] == 'admin') {
+        if (name != null && type != null && address != null) {
+          DocumentReference documentReference =
+              FirebaseFirestore.instance.collection('events').doc();
+          await FirebaseFirestore.instance
+              .collection('events')
+              .doc(documentReference.id)
+              .set({
+                "time": starttime.hour.toString() +
+                    ':' +
+                    startdate.minute.toString(),
+                "date": DateMonthYear(startdate),
+                "type": type,
+                "name": name,
+                'uid': auth.currentUser.uid,
+                "docId": documentReference.id,
+                "address": address
               })
-          .catchError((err) {
-            _snackbarService.showSnackbar(
-                message: err.message.toString(), title: "Error");
-          });
-    } else {
-      _snackbarService.showSnackbar(
-          message: "Fields can not be empty ", title: "Error");
-    }
+              .then((value) => {
+                    _snackbarService.showSnackbar(
+                      message: "Event successfully registered",
+                    ),
+                  })
+              .catchError((err) {
+                _snackbarService.showSnackbar(
+                    message: err.message.toString(), title: "Error");
+              });
+        } else {
+          _snackbarService.showSnackbar(
+              message: "Fields can not be empty ", title: "Error");
+        }
+      } else {
+        _snackbarService.showSnackbar(
+            message: "Only Admin can create an event ", title: "Error");
+      }
+    });
   }
 
   Future<DateTime> selectedDateTimeStart(BuildContext context) =>

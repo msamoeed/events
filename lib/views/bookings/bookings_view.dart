@@ -10,7 +10,12 @@ class BookingsView extends StatelessWidget {
     return ViewModelBuilder<BookingsViewModel>.reactive(
       builder: (BuildContext context, BookingsViewModel viewModel, Widget _) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: Text(
+              "Bookings",
+              style: t1white,
+            ),
+          ),
           body: Center(
             child: ListView(
               children: [
@@ -18,22 +23,34 @@ class BookingsView extends StatelessWidget {
                   ...viewModel.tRegistrations.docs.map((e) {
                     return Container(
                       margin: EdgeInsets.all(5),
-                      child: ListTile(
-                        leading: Text(
-                          e['eventName'],
-                          style: t10,
-                        ),
-                        subtitle: Text(
-                          e['uid'],
-                          style: t1small.copyWith(color: appColor),
-                        ),
-                        title: Text(
-                          e['eventDate'],
-                          style: t10,
-                        ),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            trailing: Text(
+                              e['contactNumber'],
+                              style: t1small.copyWith(color: Colors.blueAccent),
+                            ),
+                            leading: Text(
+                              e['eventName'],
+                              style: t10,
+                            ),
+                            subtitle: Text(
+                              e['uid'],
+                              style: t1small.copyWith(color: appColor),
+                            ),
+                            title: Text(
+                              e['userName'],
+                              style: t10,
+                            ),
+                          ),
+                          Divider(
+                            thickness: 1,
+                            color: appColor,
+                          )
+                        ],
                       ),
                     );
-                  })
+                  }),
               ],
             ),
           ),

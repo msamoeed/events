@@ -12,6 +12,10 @@ class MyEventsView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: appColor,
+            title: Text(
+              "Events",
+              style: t1white,
+            ),
           ),
           body: Center(
             child: ListView(
@@ -20,19 +24,27 @@ class MyEventsView extends StatelessWidget {
                   ...viewModel.tEvents.docs.map((e) {
                     return Container(
                       margin: EdgeInsets.all(5),
-                      child: ListTile(
-                        leading: Text(
-                          e['name'],
-                          style: t10,
-                        ),
-                        subtitle: Text(
-                          e['address'],
-                          style: t1small.copyWith(color: appColor),
-                        ),
-                        title: Text(
-                          e['date'],
-                          style: t10,
-                        ),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            leading: Text(
+                              e['name'],
+                              style: t10,
+                            ),
+                            subtitle: Text(
+                              e['address'],
+                              style: t1small.copyWith(color: appColor),
+                            ),
+                            title: Text(
+                              e['date'],
+                              style: t10,
+                            ),
+                          ),
+                          Divider(
+                            thickness: 3,
+                            color: appColor,
+                          )
+                        ],
                       ),
                     );
                   })

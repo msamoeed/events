@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
@@ -12,6 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:events/core/logger.dart';
@@ -28,11 +31,31 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
   final _navService = locator<NavigationService>();
 
   var auth = FirebaseAuth.instance;
+  final picker = ImagePicker();
+  File img;
+
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      img = File(pickedFile.path);
+      notifyListeners();
+    } else {
+      print('No image selected.');
+    }
+  }
+
+  String getProfilePicture() {
+    if (auth.currentUser.photoURL == null) {
+      return 'https://image.flaticon.com/icons/png/512/149/149071.png';
+    } else {
+      return auth.currentUser.photoURL;
+    }
+  }
 
   Stream<QuerySnapshot> getGeneralEvents() {
     return firebase
         .collection('events')
-        .where('type', isEqualTo: 'general')
+        .where('type', isNotEqualTo: 'sports')
         .snapshots();
   }
 
@@ -175,6 +198,7 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
         .doc(documentReference.id)
         .set({
           'uid': auth.currentUser.uid,
+          "userName": auth.currentUser.displayName,
           "docId": documentReference.id,
           "eventId": eventId,
           "eventName": eventName,

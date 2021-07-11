@@ -16,7 +16,11 @@ class EventFormView extends StatelessWidget {
         return Scaffold(
             backgroundColor: backgroundcolor,
             appBar: AppBar(
-                title: Text("Create Event"),
+                title: Text(
+                  "Create Event",
+                  style: t1white,
+                ),
+                centerTitle: true,
                 automaticallyImplyLeading: false,
                 elevation: 0,
                 backgroundColor: backgroundcolor),

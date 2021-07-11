@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'home_screen_view_model.dart';
 
 class HomeScreenView extends StatelessWidget {
@@ -24,12 +22,18 @@ class HomeScreenView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(15),
                       child: Container(
-                        child: Icon(
-                          FontAwesomeIcons.userAlt,
-                          color: Colors.blueGrey,
-                          size: 60,
-                        ),
-                      ),
+                          child: Image.network(
+                        viewModel.getProfilePicture(),
+                        height: 95,
+                      )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                          child: Text(
+                        viewModel.auth.currentUser.displayName,
+                        style: t1,
+                      )),
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 2),

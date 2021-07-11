@@ -13,6 +13,10 @@ class RegisteredEventsView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: appColor,
+            title: Text(
+              "Registered Events",
+              style: t1white,
+            ),
           ),
           body: Center(
             child: ListView(
