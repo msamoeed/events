@@ -1,5 +1,5 @@
 {
-    "last_updated": "Sun, 11 Jul 2021 12:52:36 GMT",
+    "last_updated": "Tue, 13 Jul 2021 08:44:55 GMT",
     "routes": [
         {
             "file_path": "views/splashscreen/splashscreen_view.dart",
@@ -70,6 +70,11 @@
             "file_path": "views/chat_detail_screen/chat_detail_screen_view.dart",
             "route_name": "chat_detail_screenViewRoute",
             "view_name": "ChatDetailScreenView"
+        },
+        {
+            "file_path": "views/profile_screen/profile_screen_view.dart",
+            "route_name": "profile_screenViewRoute",
+            "view_name": "ProfileScreenView"
         }
     ]
 }

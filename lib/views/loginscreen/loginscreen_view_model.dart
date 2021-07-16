@@ -29,6 +29,7 @@ class LoginscreenViewModel extends BaseViewModel {
     if (email != null && password != null) {
       try {
         var user = await AuthService().emailAuth(email, password);
+
         if (user.user.emailVerified) {
           _navService.navigateToView(BottomBarView());
         } else

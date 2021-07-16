@@ -22,14 +22,11 @@ class ChatScreenViewModel extends StreamViewModel {
   }
 
   navigateToChatDetail({String chatId, String chatName}) {
-    _navService.navigateToView(ChatDetailScreenView(), arguments: {
-      chatId : chatId,
-      chatName : chatName
-    });
+    _navService.navigateToView(ChatDetailScreenView(),
+        arguments: {'chatId': chatId, 'chatName': chatName});
   }
 
   @override
-  // TODO: implement stream
   Stream get stream => fetchRegistrations();
 
   ChatScreenViewModel() {

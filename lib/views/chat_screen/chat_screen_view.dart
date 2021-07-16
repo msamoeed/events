@@ -28,6 +28,8 @@ class ChatScreenView extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.all(5),
                           child: ListTile(
+                            onTap: () => viewModel.navigateToChatDetail(
+                                chatId: e['eventId'], chatName: e['eventName']),
                             contentPadding: EdgeInsets.symmetric(
                                 horizontal: 10.0, vertical: 5.0),
                             leading: CircleAvatar(

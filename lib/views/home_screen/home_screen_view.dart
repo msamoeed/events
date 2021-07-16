@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stacked/stacked.dart';
 import 'home_screen_view_model.dart';
@@ -88,6 +89,23 @@ class HomeScreenView extends StatelessWidget {
                           color: Colors.white,
                         ),
                         onTap: () => viewModel.navigateToMyBookingsScreen(),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 2),
+                      child: ListTile(
+                        selectedTileColor: Colors.blueGrey,
+                        enableFeedback: true,
+                        tileColor: appColor,
+                        title: Text(
+                          "Profile",
+                          style: t1white,
+                        ),
+                        leading: Icon(
+                          FontAwesomeIcons.userCircle,
+                          color: Colors.white,
+                        ),
+                        onTap: () => viewModel.navigateToProfileScreen(),
                       ),
                     ),
                     Padding(

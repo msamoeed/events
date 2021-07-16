@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:events/constants/colors.dart';
 import 'package:events/constants/fonts.dart';
@@ -7,6 +5,7 @@ import 'package:events/core/locator.dart';
 import 'package:events/views/bookings/bookings_view.dart';
 import 'package:events/views/loginscreen/loginscreen_view.dart';
 import 'package:events/views/my_events/my_events_view.dart';
+import 'package:events/views/profile_screen/profile_screen_view.dart';
 import 'package:events/views/registered_events/registered_events_view.dart';
 import 'package:events/widgets/dumb_widgets/header_curved.dart';
 import 'package:events/widgets/dumb_widgets/textField.dart';
@@ -14,7 +13,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:events/core/logger.dart';
@@ -31,18 +29,6 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
   final _navService = locator<NavigationService>();
 
   var auth = FirebaseAuth.instance;
-  final picker = ImagePicker();
-  File img;
-
-  Future getImageFromCamera() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      img = File(pickedFile.path);
-      notifyListeners();
-    } else {
-      print('No image selected.');
-    }
-  }
 
   String getProfilePicture() {
     if (auth.currentUser.photoURL == null) {
@@ -182,6 +168,10 @@ class HomeScreenViewModel extends MultipleStreamViewModel {
 
   navigateToMyBookingsScreen() {
     _navService.navigateToView(BookingsView());
+  }
+
+  navigateToProfileScreen() {
+    _navService.navigateToView(ProfileScreenView());
   }
 
   logout() {

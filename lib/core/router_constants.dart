@@ -14,3 +14,4 @@ const String registeredEventsViewRoute = 'registeredEventsViewRoute';
 const String myEventsViewRoute = 'myEventsViewRoute';
 const String bookingsViewRoute = 'bookingsViewRoute';
 const String chatDetailScreenViewRoute = 'chatDetailScreenViewRoute';
+const String profileScreenViewRoute = 'profileScreenViewRoute';

@@ -17,6 +17,7 @@ import 'package:events/views/registered_events/registered_events_view.dart' as v
 import 'package:events/views/my_events/my_events_view.dart' as view11;
 import 'package:events/views/bookings/bookings_view.dart' as view12;
 import 'package:events/views/chat_detail_screen/chat_detail_screen_view.dart' as view13;
+import 'package:events/views/profile_screen/profile_screen_view.dart' as view14;
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -49,6 +50,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => view12.BookingsView());
       case chatDetailScreenViewRoute:
         return MaterialPageRoute(builder: (_) => view13.ChatDetailScreenView());
+      case profileScreenViewRoute:
+        return MaterialPageRoute(builder: (_) => view14.ProfileScreenView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
