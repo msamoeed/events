@@ -1,5 +1,5 @@
 {
-    "last_updated": "Tue, 13 Jul 2021 08:44:55 GMT",
+    "last_updated": "Thu, 22 Jul 2021 12:46:52 GMT",
     "routes": [
         {
             "file_path": "views/splashscreen/splashscreen_view.dart",
@@ -75,6 +75,11 @@
             "file_path": "views/profile_screen/profile_screen_view.dart",
             "route_name": "profile_screenViewRoute",
             "view_name": "ProfileScreenView"
+        },
+        {
+            "file_path": "views/credit_card_screen/credit_card_screen_view.dart",
+            "route_name": "credit_card_screenViewRoute",
+            "view_name": "CreditCardScreenView"
         }
     ]
 }
